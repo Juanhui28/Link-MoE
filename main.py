@@ -623,15 +623,10 @@ def main():
         }
     else:
         loggers = {
-            'Hits@20': Logger(args.runs),
-            'Hits@50': Logger(args.runs),
-            'Hits@100': Logger(args.runs),
             'MRR': Logger(args.runs),
-            'AUC':Logger(args.runs),
-            'AP':Logger(args.runs),
             'mrr_hit20':  Logger(args.runs),
             'mrr_hit50':  Logger(args.runs),
-            'mrr_hit100':  Logger(args.runs),
+            'mrr_hit100':  Logger(args.runs)
         }
 
     if args.data_name =='ogbl-collab':
