@@ -1,1 +1,26 @@
-This is the repo for Link-MOE. Will add contents later.
+1. Generate Prediction Scores for Base Models
+   
+	Please follow https://github.com/Juanhui28/HeaRT/tree/master to get the prediction scores for 10 seeds in existing setting.
+  Save them in '~/prediction_socres' path in the following format:
+  ```
+	{'pos_test_score': [], 'neg_test_score': [], 'pos_valid_score': [], 'neg_valid_score': []}.
+  ```
+2. Generate Heuristic Features
+   
+	Generate CN, AA, RA, Katz, PPR, Degree, Shorteset Path Length for each dataset.
+	Save the features in '~/heuristics/'+args.name+'/AA' and so on.
+3. Run the Codes
+   
+	ogbl-collab
+	```
+	    python main.py --device 2 --use_valedges_as_input --data_name ogbl-collab --name collab --l2 0 --lr 0.001 --dropout 0 --num_layers 2 --hidden_channels 64 --score_number 0 --num_layers_predictor 1 --ncnc --neognn --buddy --mlp --n2v --seal --gcn --ncn --use_feature --use_degree --use_cn --use_sp --use_aa --use_ra --use_katz --use_ppr --runs 3 --end_epochs 800 --ratio 0.8 --train_batch_size 60048 --test_batch_size 100000 --kill_cnt 2000 
+	```
+	oglb-ppa
+	```
+	    python main.py --device 2 --ratio 0.8 --data_name ogbl-ppa --name ppa --l2 0--lr 0.0001 --dropout 0 --num_layers 3 --hidden_channels 64  --score_number 0 --num_layers_predictor 1 --ncnc --neognn --buddy --mlp --n2v --seal --gcn --ncn --use_feature --use_degree --use_cn --use_sp --use_aa --use_ra --use_katz --use_ppr --runs 3 --end_epochs 500 --train_batch_size 50 --test_batch_size 60048 
+	 ```
+	ogbl-citation2
+	```
+    	python main.py --device 5 --ratio 0.8 --data_name ogbl-citation2 --name citation2 --l2 0 --lr 0.001 --dropout 0 --num_layers 2 --hidden_channels 64  --score_number 0 --num_layers_predictor 1 --ncnc --neognn --buddy --mlp --n2v --seal --gcn --ncn --use_feature --use_degree --use_cn --use_aa --use_ra --use_katz --runs 3 --train_batch_size 300 --test_batch_size 60048 --end_epochs 30 --kill_cnt 2000 
+    ```
+    Note that score_number means the prediction results of base models in different seeds.
