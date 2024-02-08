@@ -3,11 +3,18 @@
 	Please follow https://github.com/Juanhui28/HeaRT/tree/master to get the prediction scores for 10 seeds in existing setting. For example, for the gcn prediction scores of ogbl-collab dataset:
 	```
 	cd benchmarking/exist_setting_ogb
-	python main_gnn_ogb.py  --use_valedges_as_input  --data_name ogbl-collab  --gnn_model GCN --hidden_channels 256 --lr 0.001 --dropout 0.  --num_layers 3 --num_layers_predictor 3 --epochs 9999 --kill_cnt 100  --batch_size 65536 --save
+	python main_gnn_ogb.py  --use_valedges_as_input  --data_name ogbl-collab  --gnn_model GCN --hidden_channels 256 --lr 0.001 --dropout 0.  --num_layers 3 --num_layers_predictor 3 --epochs 9999 --kill_cnt 100  --batch_size 65536 --save --outupt_dir ~/prediction_socres/collab/gcn
 	```
-  	Save them in '~/prediction_socres/collab/gcn/' path in the following format:
+  	The prediction score of gcn will be saved in the following format:
   	```
-	{'pos_test_score': [], 'neg_test_score': [], 'pos_valid_score': [], 'neg_valid_score': []}
+	{
+		'pos_valid_score': pos_valid_pred,
+		'neg_valid_score': neg_valid_pred,
+		'pos_test_score': pos_test_pred,
+		'neg_test_score': neg_test_pred,
+		'node_emb': x1,
+		'node_emb_with_valid_edges': x2
+   }
   	```
 2. Generate Heuristic Features
    
