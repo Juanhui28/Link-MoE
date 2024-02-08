@@ -18,8 +18,16 @@
   	```
 2. Generate Heuristic Features
    
-	Generate CN, AA, RA, Katz, PPR, Degree, Shorteset Path Length for each dataset. For example, for ogbl-collab dataset:
-	Save the features in '~/heuristics/collab/' path in the following format:
+	Please follow https://github.com/Juanhui28/HeaRT/tree/master to get CN, AA, RA, Katz, PPR, Degree, Shorteset Path Length for each dataset. For example, for AA feature of ogbl-collab dataset:
+	```
+ 	cd benchmarking/exist_setting_ogb
+ 	python main_heuristic_ogb.py --data_name ogbl-collab --use_heuristic AA --use_valedges_as_input --output_dir ~/heuristics/
+ 	```
+ 	Please modify the save_path in Line 252 as follows,
+	```	
+ 	save_path = args.output_dir + args.data_name.split('-')[1] + '/' + args.use_heuristic
+ 	```
+   	The AA feature will be saved in the following format:
   	```
 	{'pos_test_score': [], 'neg_test_score': [], 'pos_valid_score': [], 'neg_valid_score': []}
   	```
